@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.codepath.asynchttpclient.AsyncHttpClient
 import com.codepath.asynchttpclient.RequestParams
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
-import com.codepath.bestsellerlistapp.R
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import okhttp3.Headers
@@ -22,13 +21,13 @@ import org.json.JSONObject
 // --------------------------------//
 // CHANGE THIS TO BE YOUR API KEY  //
 // --------------------------------//
-private const val API_KEY = "luDSqqnq3NwZsaI7Z5sDGWO1w0AHxAt3"
+private const val API_KEY = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
 
 /*
  * The class for the only fragment in the app, which contains the progress bar,
  * recyclerView, and performs the network calls to the NY Times API.
  */
-class BestSellerBooksFragment : Fragment(), OnListFragmentInteractionListener {
+class MoviesFragment : Fragment(), OnListFragmentInteractionListener {
 
     /*
      * Constructing the view
@@ -59,7 +58,7 @@ class BestSellerBooksFragment : Fragment(), OnListFragmentInteractionListener {
         params["api-key"] = API_KEY
         // Using the client, perform the HTTP request
         client[
-            "https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json",
+            "https://api.themoviedb.org/3/movie/now_playing",
             params,
             object : JsonHttpResponseHandler() {
             /*
@@ -76,14 +75,14 @@ class BestSellerBooksFragment : Fragment(), OnListFragmentInteractionListener {
 
                 //TODO - Parse JSON into Models
                 val resultsJSON : JSONObject = json.jsonObject.get("results") as JSONObject
-                val booksRawJSON : String = resultsJSON.get("books").toString()
+                val booksRawJSON : String = resultsJSON.get("movies").toString()
                 val gson = Gson()
-                val arrayBookType = object : TypeToken<List<BestSellerBook>>() {}.type
-                val models : List<BestSellerBook> = gson.fromJson(booksRawJSON, arrayBookType)
-                recyclerView.adapter = BestSellerBooksRecyclerViewAdapter(models, this@BestSellerBooksFragment)
+                val arrayBookType = object : TypeToken<List<Movie>>() {}.type
+                val models : List<Movie> = gson.fromJson(booksRawJSON, arrayBookType)
+                recyclerView.adapter = MoviesRecyclerViewAdapter(models, this@MoviesFragment)
 
                 // Look for this in Logcat:
-                Log.d("BestSellerBooksFragment", "response successful")
+                Log.d("MoviesFragment", "response successful")
             }
 
             /*
@@ -101,7 +100,7 @@ class BestSellerBooksFragment : Fragment(), OnListFragmentInteractionListener {
 
                 // If the error is not null, log it!
                 t?.message?.let {
-                    Log.e("BestSellerBooksFragment", errorResponse)
+                    Log.e("MovieFragment", errorResponse)
                 }
             }
         }]
@@ -111,7 +110,8 @@ class BestSellerBooksFragment : Fragment(), OnListFragmentInteractionListener {
     /*
      * What happens when a particular book is clicked.
      */
-    override fun onItemClick(item: BestSellerBook) {
+
+    override fun onItemClick(item: Movie) {
         Toast.makeText(context, "test: " + item.title, Toast.LENGTH_LONG).show()
     }
 
