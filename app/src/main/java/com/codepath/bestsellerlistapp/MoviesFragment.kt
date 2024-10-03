@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.core.widget.ContentLoadingProgressBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codepath.asynchttpclient.AsyncHttpClient
 import com.codepath.asynchttpclient.RequestParams
@@ -40,7 +41,7 @@ class MoviesFragment : Fragment(), OnListFragmentInteractionListener {
         val progressBar = view.findViewById<View>(R.id.progress) as ContentLoadingProgressBar
         val recyclerView = view.findViewById<View>(R.id.list) as RecyclerView
         val context = view.context
-        recyclerView.layoutManager = GridLayoutManager(context, 2)
+        recyclerView.layoutManager = LinearLayoutManager(context)
         updateAdapter(progressBar, recyclerView)
         return view
     }
@@ -55,7 +56,7 @@ class MoviesFragment : Fragment(), OnListFragmentInteractionListener {
         // Create and set up an AsyncHTTPClient() here
         val client = AsyncHttpClient()
         val params = RequestParams()
-        params["api-key"] = API_KEY
+        params["api_key"] = API_KEY
         // Using the client, perform the HTTP request
         client[
             "https://api.themoviedb.org/3/movie/now_playing",
@@ -74,11 +75,11 @@ class MoviesFragment : Fragment(), OnListFragmentInteractionListener {
                 progressBar.hide()
 
                 //TODO - Parse JSON into Models
-                val resultsJSON : JSONObject = json.jsonObject.get("results") as JSONObject
-                val booksRawJSON : String = resultsJSON.get("movies").toString()
+                //val resultsJSON : JSONObject = json.jsonObject.get("results") as JSONObject
+                val booksRawJSON : String = json.jsonObject.get("results").toString()
                 val gson = Gson()
-                val arrayBookType = object : TypeToken<List<Movie>>() {}.type
-                val models : List<Movie> = gson.fromJson(booksRawJSON, arrayBookType)
+                val arrayMovieType = object : TypeToken<List<Movie>>() {}.type
+                val models : List<Movie> = gson.fromJson(booksRawJSON, arrayMovieType)
                 recyclerView.adapter = MoviesRecyclerViewAdapter(models, this@MoviesFragment)
 
                 // Look for this in Logcat:

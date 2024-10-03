@@ -31,9 +31,9 @@ class MoviesRecyclerViewAdapter(
      */
     inner class MovieViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
         var mItem: Movie? = null
-        val mMovieTitle: TextView = mView.findViewById<View>(id.book_title) as TextView
-        val mMovieDescription: TextView = mView.findViewById<View>(id.book_description) as TextView
-        val mMoviePoster: ImageView = mView.findViewById<View>(id.book_image) as ImageView
+        val mMovieTitle: TextView = mView.findViewById<View>(id.movie_title) as TextView
+        val mMovieDescription: TextView = mView.findViewById<View>(id.movie_description) as TextView
+        val mMoviePoster: ImageView = mView.findViewById<View>(id.movie_image) as ImageView
         override fun toString(): String {
             return mMovieTitle.toString()
         }
@@ -46,10 +46,11 @@ class MoviesRecyclerViewAdapter(
         val movie = movies[position]
 
         holder.mMovieTitle.text = movie.title
-        holder.mMovieDescription.text = movie.description
+        holder.mMovieDescription.text = movie.overview
 
         Glide.with(holder.mView)
-            .load("https://image.tmdb.org/t/p/w500/" + movie.poster_image)
+            .load("https://image.tmdb.org/t/p/w500/" + movie.poster_path)
+            .placeholder(R.drawable.loading)
             .centerInside()
             .into(holder.mMoviePoster)
 
