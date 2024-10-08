@@ -1,49 +1,51 @@
-# Lab 3: NY Times Bestselling Books
+# Android Project 3 - *Flixster*
 
-Course Link: [CodePath Android Course](https://courses.codepath.org/courses/and102/unit/3#!labs)
+Submitted by: **Charles W**
 
-Submitted by: **Charles Wang** <!-- Replace 'Your Name Here' with your actual name -->
+**Flixster** is a movie browsing app that allows users to browse movies currently playing in theaters.
 
-**NY Times Bestselling Books** is an app designed to display the current bestselling books based on NY Times data.
+Time spent: **5** hours spent in total
 
-Time spent: **2** hours spent in total <!-- Replace 'X' with the number of hours you spent on this project -->
-
-## Application Features
-
-### Required Features
+## Required Features
 
 The following **required** functionality is completed:
 
-- [x] (2 pts) **Live data is loaded from the NY Times API.**
-  - ![Image/GIF showing additional email information]<img src='gifs\BOOKLIST demo.gif'>
-- [x] (4 pts) **Books are displayed using a RecyclerView.**
-  - Displays book ranking, cover, title, author, and description.
-  - Book cover images are downloaded using Glide.
-  - ![Image/GIF showing required features]<img src='gifs\BOOKLIST demo.gif'>
-### Stretch Features
+- [x] **Make a request to [The Movie Database API's `now_playing`](https://developers.themoviedb.org/3/movies/get-now-playing) endpoint to get a list of current movies**
+- [x] **Parse through JSON data and implement a RecyclerView to display all movies**
+- [x] **Use Glide to load and display movie poster images**
 
-The following **stretch** functionality is implemented:
+The following **optional** features are implemented:
 
-- [x] (4 pts) **Improved layout and styling to match the NY Times website.**
-  - Includes a "buy" button that links to Amazon.
-  - ![Image/GIF showing stretch features]<img src='gifs\BOOKLIST demo.gif'>
+- [x] Improve and customize the user interface through styling and coloring
+- [x] Implement orientation responsivity
+  - App should neatly arrange data in both landscape and portrait mode
+- [x] Implement Glide to display placeholder graphics during loading
+  - Note: this feature is difficult to capture in a GIF without throttling internet speeds.  Instead, include an additional screencap of your Glide code implementing the feature.  (<10 lines of code)
+
+The following **additional** features are implemented:
+
+- [ ] List anything else that you can get done to improve the app functionality!
+
+## Video Walkthrough
+
+Here's a walkthrough of implemented user stories:
+
+<img src='flixster demo.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+<!-- Replace this with whatever GIF tool you used! -->
+GIF created with ...  
+<!-- Recommended tools:
+[Kap](https://getkap.co/) for macOS
+[ScreenToGif](https://www.screentogif.com/) for Windows
+[peek](https://github.com/phw/peek) for Linux. -->
 
 ## Notes
 
-Describe any challenges encountered while building the app. <!-- Replace this with your specific challenges and experiences -->
-
-## Resources
-
-- [CodePath's AsyncHTTPClient library](https://guides.codepath.org/android/Using-CodePath-Async-Http-Client)
-- [Displaying Images with Glide library](https://guides.codepath.org/android/Displaying-Images-with-the-Glide-Library)
-- [Parsing JSON responses to Models](https://guides.codepath.org/android/converting-json-to-models)
-- [Parsing JSON with gson library](https://guides.codepath.org/android/Leveraging-the-Gson-Library#parsing-the-response)
-- [Kotlin's Guide on Serialization](https://kotlinlang.org/docs/serialization.html)
+Describe any challenges encountered while building the app.
 
 ## License
 
-```plaintext
-    Copyright [2002] [Charles Wang]
+    Copyright [2024] [Charles Wang]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
